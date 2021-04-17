@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3467de33763664de2a1feb60440b642d, type: 3}
+  m_Name: PlayerRun
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: -8919919250702950402, guid: b5f56f72b5fab42d1819715343072c13, type: 3}
+  - {fileID: -5539735465350335616, guid: b5f56f72b5fab42d1819715343072c13, type: 3}
+  - {fileID: -6113799899672924050, guid: b5f56f72b5fab42d1819715343072c13, type: 3}
+  fps: 12

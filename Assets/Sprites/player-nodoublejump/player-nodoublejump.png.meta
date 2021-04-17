@@ -1,0 +1,430 @@
+fileFormatVersion: 2
+guid: b5f56f72b5fab42d1819715343072c13
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6185543756131844941
+    second: player-nodoublejump0
+  - first:
+      213: -4797310945022322754
+    second: player-nodoublejump1
+  - first:
+      213: 6317093834174061489
+    second: player-nodoublejump2
+  - first:
+      213: -706139972166555056
+    second: player-nodoublejump3
+  - first:
+      213: 2979282551991945807
+    second: player-nodoublejump4
+  - first:
+      213: 2560803838131182682
+    second: player-nodoublejump5
+  - first:
+      213: 1397467677797939509
+    second: player-nodoublejump6
+  - first:
+      213: -8142994004111762514
+    second: player-nodoublejump7
+  - first:
+      213: 5596946852190340772
+    second: player-nodoublejump00
+  - first:
+      213: -8919919250702950402
+    second: player-nodoublejump01
+  - first:
+      213: -5539735465350335616
+    second: player-nodoublejump02
+  - first:
+      213: -6113799899672924050
+    second: player-nodoublejump03
+  - first:
+      213: 8850367613607224495
+    second: player-nodoublejump04
+  - first:
+      213: -8880032150126703902
+    second: player-nodoublejump05
+  - first:
+      213: -1819250293240627979
+    second: player-nodoublejump06
+  - first:
+      213: 2699529810287167193
+    second: player-nodoublejump07
+  - first:
+      213: 7516695737742133928
+    second: player-nodoublejump08
+  - first:
+      213: -8811066520667529950
+    second: player-nodoublejump09
+  - first:
+      213: -7072399133991067024
+    second: player-nodoublejump10
+  - first:
+      213: 3251058429977605711
+    second: player-nodoublejump11
+  - first:
+      213: -1129844883217501508
+    second: player-nodoublejump12
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: player-nodoublejump00
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 43
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a6cb8712895cad40800000000000000
+      internalID: 5596946852190340772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-nodoublejump01
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 43
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eff9ea483b4163480800000000000000
+      internalID: -8919919250702950402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-nodoublejump02
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 43
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 083f82ee1f7ee13b0800000000000000
+      internalID: -5539735465350335616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-nodoublejump03
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 43
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e603d20326b672ba0800000000000000
+      internalID: -6113799899672924050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-nodoublejump04
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 29
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa42eac0472d2da70800000000000000
+      internalID: 8850367613607224495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-nodoublejump05
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 29
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ea46a1dec9c3c480800000000000000
+      internalID: -8880032150126703902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-nodoublejump06
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 29
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fcfdd14f79b0c6e0800000000000000
+      internalID: -1819250293240627979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-nodoublejump07
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 29
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d68eba4f08a67520800000000000000
+      internalID: 2699529810287167193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-nodoublejump08
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 15
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8aa00d4c2faa05860800000000000000
+      internalID: 7516695737742133928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-nodoublejump09
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 15
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22d5647beadc8b580800000000000000
+      internalID: -8811066520667529950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-nodoublejump10
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 15
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 072aea4757ac9dd90800000000000000
+      internalID: -7072399133991067024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-nodoublejump11
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 15
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f46badeca641e1d20800000000000000
+      internalID: 3251058429977605711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player-nodoublejump12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 12
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb2378c901cf150f0800000000000000
+      internalID: -1129844883217501508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3467de33763664de2a1feb60440b642d, type: 3}
+  m_Name: BackdropAnimation
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: -8845422727986092078, guid: df7c591e20dcb40e29d0b78fd00ab69c, type: 3}
+  - {fileID: 5470872839887664285, guid: df7c591e20dcb40e29d0b78fd00ab69c, type: 3}
+  - {fileID: -5399657886005430275, guid: df7c591e20dcb40e29d0b78fd00ab69c, type: 3}
+  - {fileID: 2174655020834562282, guid: df7c591e20dcb40e29d0b78fd00ab69c, type: 3}
+  - {fileID: 766407602296923101, guid: df7c591e20dcb40e29d0b78fd00ab69c, type: 3}
+  - {fileID: -2139288370636301240, guid: df7c591e20dcb40e29d0b78fd00ab69c, type: 3}
+  - {fileID: -367481397005076568, guid: df7c591e20dcb40e29d0b78fd00ab69c, type: 3}
+  - {fileID: 7226480795201861059, guid: df7c591e20dcb40e29d0b78fd00ab69c, type: 3}
+  fps: 12
