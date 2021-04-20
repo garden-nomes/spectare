@@ -105,12 +105,14 @@ MonoBehaviour:
   enemyTag: Enemy
   powerupTag: Powerup
   spikesTag: Spikes
+  keyPickupTag: KeyPickup
+  lockTag: Lock
   enemyBounceForce: 20
   enemyDamageInvulnerabilityTime: 2
   maxJumpHeight: 4
-  maxRiseTime: 0.33333334
-  maxFallTime: 0.33333334
-  maxHorizontalSpeed: 10
+  maxRiseTime: 0.41666666
+  maxFallTime: 0.4166667
+  maxHorizontalSpeed: 8
   airControl: 0.5
   wallDrag: 0.3
   timeToMaxSpeed: 0.125

@@ -5,13 +5,16 @@ using UnityEngine;
 public class Stars : MonoBehaviour
 {
     public Sprite[] starSprites;
-    public int starCount = 100;
+    public float density = 0.01f;
     public float width = 20f;
     public float height = 20f;
     public float parallax = 0.5f;
-    public Transform cameraTransform;
+    public float twinkleRate = 1f;
 
     private Vector3 initialPosition;
+    private SpriteRenderer[] stars;
+    private float[] starParallaxes;
+    private Vector3[] starPositions;
 
     void Start()
     {
@@ -22,22 +25,38 @@ public class Stars : MonoBehaviour
         star.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         star.sortingOrder = -100;
 
+        int starCount = Mathf.FloorToInt(width * height * density);
+
+        stars = new SpriteRenderer[starCount];
+        starParallaxes = new float[starCount];
+        starPositions = new Vector3[starCount];
+
         for (int i = 0; i < starCount; i++)
         {
-            Vector3 position = new Vector3(
+            starPositions[i] = new Vector3(
                 Mathf.Round(Random.Range(-width / 2f, width / 2f) * 8f) / 8f,
                 Mathf.Round(Random.Range(-height / 2f, height / 2f) * 8f) / 8f,
                 0f);
-            var sprite = starSprites[Random.Range(0, starSprites.Length)];
-            var instance = Instantiate(star, transform.position + position, Quaternion.identity, transform);
-            instance.sprite = sprite;
+            stars[i] = Instantiate(star, transform.position + starPositions[i], Quaternion.identity, transform);
+            stars[i].sprite = starSprites[Random.Range(0, starSprites.Length)];
+            starParallaxes[i] = Random.value;
         }
     }
 
     void LateUpdate()
     {
-        Vector3 toCamera = cameraTransform.position - initialPosition;
-        transform.position = initialPosition + toCamera * parallax;
+        Vector3 toCamera = Camera.main.transform.position - initialPosition;
+
+        for (int i = 0; i < stars.Length; i++)
+        {
+            if (Random.value < twinkleRate * Time.deltaTime)
+                stars[i].sprite = starSprites[Random.Range(0, starSprites.Length)];
+
+            stars[i].transform.position =
+                initialPosition +
+                starPositions[i] +
+                toCamera * parallax * starParallaxes[i];
+        }
     }
 
 #if UNITY_EDITOR

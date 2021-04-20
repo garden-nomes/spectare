@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public System.Action onDeath;
+    public System.Action<Collider2D> onKeyPickup;
+    public System.Action<Collider2D> onUnlock;
 
     public int doubleJumps = 0;
 
@@ -15,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public string enemyTag = "Enemy";
     public string powerupTag = "Powerup";
     public string spikesTag = "Spikes";
+    public string keyPickupTag = "KeyPickup";
+    public string lockTag = "Lock";
     public float enemyBounceForce = 20f;
     public float enemyDamageInvulnerabilityTime = 2f;
     public float maxJumpHeight = 5f;
@@ -224,11 +228,19 @@ public class PlayerController : MonoBehaviour
             if (powerups == 4)
                 doubleJumps = 1;
 
-            GameObject.Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+        }
+        else if (other.CompareTag(keyPickupTag))
+        {
+            onKeyPickup?.Invoke(other);
+        }
+        else if (other.CompareTag(lockTag))
+        {
+            onUnlock?.Invoke(other);
         }
         else if (invulnerableTimer <= 0f && (other.CompareTag(enemyTag) || other.CompareTag(spikesTag)))
         {
-            if (powerups > 0)
+            if (powerups >= 4)
             {
                 if (other.CompareTag(enemyTag))
                 {

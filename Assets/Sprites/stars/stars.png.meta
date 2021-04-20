@@ -20,6 +20,36 @@ TextureImporter:
   - first:
       213: 2728702946731355504
     second: stars5
+  - first:
+      213: -4538806719251616113
+    second: stars00
+  - first:
+      213: -4878169975416201981
+    second: stars01
+  - first:
+      213: -6802578619320950620
+    second: stars02
+  - first:
+      213: -1865518165300447619
+    second: stars03
+  - first:
+      213: 2479017401805697338
+    second: stars04
+  - first:
+      213: 6489041722649032638
+    second: stars05
+  - first:
+      213: -5059575161994068181
+    second: stars06
+  - first:
+      213: 5912048632792934350
+    second: stars07
+  - first:
+      213: -1990146273644660236
+    second: stars08
+  - first:
+      213: 5306637810285672948
+    second: stars09
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -95,7 +125,91 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stars0
+      name: stars00
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 37
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8ee9d2265be201c0800000000000000
+      internalID: -4538806719251616113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stars01
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 37
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30d5755c0424d4cb0800000000000000
+      internalID: -4878169975416201981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stars02
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 37
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a025be89c26891a0800000000000000
+      internalID: -6802578619320950620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stars03
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 37
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d767a33dc195c16e0800000000000000
+      internalID: -1865518165300447619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stars04
       rect:
         serializedVersion: 2
         x: 1
@@ -109,14 +223,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2b885af8f7c48fc80800000000000000
-      internalID: -8288791003420849998
+      spriteID: a31f3aa413d376220800000000000000
+      internalID: 2479017401805697338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stars1
+      name: stars05
       rect:
         serializedVersion: 2
         x: 13
@@ -130,14 +244,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8705cf8e2f865d1c0800000000000000
-      internalID: -4479558861849866120
+      spriteID: eb73f2bf015bd0a50800000000000000
+      internalID: 6489041722649032638
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stars2
+      name: stars06
       rect:
         serializedVersion: 2
         x: 25
@@ -151,14 +265,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9ea6121dca3637380800000000000000
-      internalID: -8974720038525113623
+      spriteID: b2f34fa6237c8c9b0800000000000000
+      internalID: -5059575161994068181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stars3
+      name: stars07
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 25
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec7e47c78e0db0250800000000000000
+      internalID: 5912048632792934350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stars08
       rect:
         serializedVersion: 2
         x: 1
@@ -172,14 +307,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 42bf58302acb3bd70800000000000000
-      internalID: 9057790679602035492
+      spriteID: 4f9b75422849164e0800000000000000
+      internalID: -1990146273644660236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stars4
+      name: stars09
       rect:
         serializedVersion: 2
         x: 13
@@ -193,29 +328,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ccc30fea5fd42da0800000000000000
-      internalID: -5970401624336380733
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: stars5
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 13
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 07deb7d6fdc4ed520800000000000000
-      internalID: 2728702946731355504
+      spriteID: 4f9fbb109f6f4a940800000000000000
+      internalID: 5306637810285672948
       vertices: []
       indices: 
       edges: []

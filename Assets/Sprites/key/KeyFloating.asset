@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3467de33763664de2a1feb60440b642d, type: 3}
+  m_Name: KeyFloating
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: -3151738868606677293, guid: f6e9e5f3c03a843c0a499f11b1c7516a, type: 3}
+  - {fileID: -5005904718058294843, guid: f6e9e5f3c03a843c0a499f11b1c7516a, type: 3}
+  - {fileID: -8861764446152779381, guid: f6e9e5f3c03a843c0a499f11b1c7516a, type: 3}
+  - {fileID: -4892229734701727390, guid: f6e9e5f3c03a843c0a499f11b1c7516a, type: 3}
+  - {fileID: -5175596450485238533, guid: f6e9e5f3c03a843c0a499f11b1c7516a, type: 3}
+  - {fileID: -3367533582899556465, guid: f6e9e5f3c03a843c0a499f11b1c7516a, type: 3}
+  - {fileID: -4818053706370013132, guid: f6e9e5f3c03a843c0a499f11b1c7516a, type: 3}
+  - {fileID: 7628862988895762647, guid: f6e9e5f3c03a843c0a499f11b1c7516a, type: 3}
+  fps: 4

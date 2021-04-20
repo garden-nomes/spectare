@@ -8,21 +8,25 @@ public class GameManager : MonoBehaviour
     public Transform startPoint;
     public float respawnTime = 1f;
     public CameraController camera;
+    public KeyDisplay keyDisplay;
+    public string powerupTag = "Powerup";
 
     private Room[] rooms;
+    private GameObject[] powerups;
     private Room currentRoom;
     public Room CurrentRoom => currentRoom;
     private Transform respawnPoint;
     private GameObject player;
     public GameObject Player => player;
     private float respawnTimer = 0f;
+    private int keys = 0;
 
     void Start()
     {
-        player = Instantiate(playerPrefab, startPoint.position, Quaternion.identity);
-        camera.target = player.transform;
         respawnPoint = startPoint;
         rooms = GameObject.FindObjectsOfType<Room>();
+        powerups = GameObject.FindGameObjectsWithTag(powerupTag);
+        RespawnPlayer();
     }
 
     void Update()
@@ -35,10 +39,36 @@ public class GameManager : MonoBehaviour
             respawnTimer -= Time.deltaTime;
 
             if (respawnTimer <= 0f)
-            {
-                player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
-                camera.target = player.transform;
-            }
+                RespawnPlayer();
+        }
+    }
+
+    void RespawnPlayer()
+    {
+        player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
+
+        var playerController = player.GetComponent<PlayerController>();
+        playerController.onKeyPickup += OnKeyPickup;
+        playerController.onUnlock += OnUnlock;
+
+        foreach (var powerup in powerups)
+            powerup.gameObject.SetActive(true);
+
+        camera.target = player.transform;
+    }
+
+    void OnKeyPickup(Collider2D keyCollider)
+    {
+        keyDisplay.KeyCount++;
+        GameObject.Destroy(keyCollider.gameObject);
+    }
+
+    void OnUnlock(Collider2D lockCollider)
+    {
+        if (keyDisplay.KeyCount > 0)
+        {
+            lockCollider.GetComponent<Lock>().Unlock();
+            keyDisplay.KeyCount--;
         }
     }
 

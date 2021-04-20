@@ -163,8 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b717aaa6a33d640b1b5d377bd1962567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 3
+  speed: 1.5
   closeDistance: 12
   minSpawnDistance: 5
   maxSpawnDistance: 10
@@ -355,7 +354,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounds: {fileID: 4067464966506859372}
-  target: {fileID: 0}
 --- !u!1 &4067464967748072648
 GameObject:
   m_ObjectHideFlags: 0
