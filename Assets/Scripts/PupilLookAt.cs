@@ -5,18 +5,13 @@ using UnityEngine;
 public class PupilLookAt : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D bounds;
-    private GameManager gameManager;
-
-    void Start()
-    {
-        gameManager = FindObjectOfType<GameManager>();
-    }
+    public Vector3 target;
 
     void Update()
     {
-        if (gameManager != null && gameManager.Player != null)
+        if (target != null)
         {
-            Vector3 toTarget = (gameManager.Player.transform.position - transform.parent.position).normalized;
+            Vector3 toTarget = (target - transform.parent.position).normalized;
             toTarget.x *= bounds.bounds.size.x * 0.5f;
             toTarget.y *= bounds.bounds.size.y * 0.5f;
             toTarget.x = Mathf.Round(toTarget.x * 8f) / 8f;

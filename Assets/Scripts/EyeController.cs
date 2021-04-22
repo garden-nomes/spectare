@@ -11,6 +11,7 @@ public class EyeController : MonoBehaviour
     [SerializeField] private Collider2D collider;
 
     private EyeAnimator eyeAnimator;
+    private PupilLookAt pupilLookAt;
     private Room room;
     private GameManager gameManager;
     private bool isBonked = false;
@@ -19,6 +20,7 @@ public class EyeController : MonoBehaviour
     void Start()
     {
         eyeAnimator = GetComponent<EyeAnimator>();
+        pupilLookAt = GetComponentInChildren<PupilLookAt>();
         room = GetComponentInParent<Room>();
         gameManager = FindObjectOfType<GameManager>();
         initialPosition = transform.position;
@@ -39,10 +41,14 @@ public class EyeController : MonoBehaviour
         collider.enabled = eyeAnimator.State == EyeAnimatorState.Open;
 
         var player = gameManager == null ? null : gameManager.Player;
+
         if (player == null)
             return;
 
+        pupilLookAt.target = player.transform.position;
+
         var toTarget = player.transform.position - transform.position;
+
         if (eyeAnimator.State == EyeAnimatorState.Closed)
         {
             if (isBonked)
