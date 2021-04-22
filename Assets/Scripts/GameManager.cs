@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private GameObject[] powerups;
     private Room currentRoom;
     public Room CurrentRoom => currentRoom;
-    private Transform respawnPoint;
+    private Vector3 respawnPoint;
     private GameObject player;
     public GameObject Player => player;
     private float respawnTimer = 0f;
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        respawnPoint = startPoint;
+        respawnPoint = startPoint.position;
         rooms = GameObject.FindObjectsOfType<Room>();
         powerups = GameObject.FindGameObjectsWithTag(powerupTag);
         isEndingSequenceStarted = false;
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     void RespawnPlayer()
     {
-        player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
+        player = Instantiate(playerPrefab, respawnPoint, Quaternion.identity);
 
         var playerController = player.GetComponent<PlayerController>();
         playerController.onKeyPickup += OnKeyPickup;
@@ -94,11 +94,9 @@ public class GameManager : MonoBehaviour
 
                 if (room.Bounds.Contains(player.transform.position))
                 {
-                    foreach (var respawnPoint in room.RespawnPoints)
-                    {
-                        if (respawnPoint.previousRoom == currentRoom)
-                            this.respawnPoint = respawnPoint.transform;
-                    }
+                    var respawnPoint_ = room.GetComponentInChildren<RespawnPoint>();
+                    if (respawnPoint_ != null)
+                        respawnPoint = respawnPoint_.transform.position;
 
                     currentRoom = room;
                     camera.bounds = room.Bounds;

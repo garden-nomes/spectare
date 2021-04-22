@@ -55,18 +55,9 @@ public class Room : MonoBehaviour
 {
     public float width;
     public float height;
-    public bool isFinalRoom = false;
 
     public Bounds Bounds =>
         new Bounds(transform.position, new Vector3(width, height, 0f));
-
-    private RespawnPoint[] respawnPoints;
-    public RespawnPoint[] RespawnPoints => respawnPoints;
-
-    void Start()
-    {
-        respawnPoints = GetComponentsInChildren<RespawnPoint>();
-    }
 
 #if UNITY_EDITOR
     void OnDrawGizmos()
