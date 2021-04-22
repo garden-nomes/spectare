@@ -14,18 +14,22 @@ public class EyeController : MonoBehaviour
     private Room room;
     private GameManager gameManager;
     private bool isBonked = false;
+    private Vector3 initialPosition;
 
     void Start()
     {
         eyeAnimator = GetComponent<EyeAnimator>();
         room = GetComponentInParent<Room>();
         gameManager = FindObjectOfType<GameManager>();
+        initialPosition = transform.position;
     }
 
     void Update()
     {
         if (room != null && gameManager != null && gameManager.CurrentRoom != room)
         {
+            transform.position = initialPosition;
+
             if (eyeAnimator.State == EyeAnimatorState.Open)
                 eyeAnimator.Close();
 

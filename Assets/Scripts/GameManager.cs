@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public KeyDisplay keyDisplay;
     public string powerupTag = "Powerup";
 
+    public float endingSequenceBeat = 3f;
+    public float endingSequenceTime = 3f;
+    public Vector3 endingSequencePan = new Vector3(0f, 30f, 0f);
+
     private Room[] rooms;
     private GameObject[] powerups;
     private Room currentRoom;
@@ -20,12 +24,18 @@ public class GameManager : MonoBehaviour
     public GameObject Player => player;
     private float respawnTimer = 0f;
     private int keys = 0;
+    private bool isEndingSequenceStarted;
 
     void Start()
     {
         respawnPoint = startPoint;
         rooms = GameObject.FindObjectsOfType<Room>();
         powerups = GameObject.FindGameObjectsWithTag(powerupTag);
+        isEndingSequenceStarted = false;
+
+        foreach (var trigger in GameObject.FindObjectsOfType<EndingSequenceTrigger>())
+            trigger.onPlayerEnter += OnEndingSequenceTriggered;
+
         RespawnPlayer();
     }
 
@@ -94,6 +104,28 @@ public class GameManager : MonoBehaviour
                     camera.bounds = room.Bounds;
                 }
             }
+        }
+    }
+
+    void OnEndingSequenceTriggered()
+    {
+        if (!isEndingSequenceStarted)
+            StartCoroutine(EndingSequenceCoroutine());
+    }
+
+    IEnumerator EndingSequenceCoroutine()
+    {
+        isEndingSequenceStarted = true;
+        camera.enabled = false;
+        Vector3 initialPosition = camera.transform.position;
+
+        yield return new WaitForSeconds(endingSequenceBeat);
+
+        for (float t = 0f; t < 1f; t += Time.deltaTime / endingSequenceTime)
+        {
+            float smoothStep = t * t * (3f - 2f * t);
+            camera.transform.position = initialPosition + endingSequencePan * smoothStep;
+            yield return null;
         }
     }
 }

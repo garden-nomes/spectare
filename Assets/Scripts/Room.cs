@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
 
 [CustomEditor(typeof(Room))]
 public class RoomEditor : Editor
@@ -47,11 +49,13 @@ public class RoomEditor : Editor
         }
     }
 }
+#endif
 
 public class Room : MonoBehaviour
 {
     public float width;
     public float height;
+    public bool isFinalRoom = false;
 
     public Bounds Bounds =>
         new Bounds(transform.position, new Vector3(width, height, 0f));

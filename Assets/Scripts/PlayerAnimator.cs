@@ -99,6 +99,9 @@ public class PlayerAnimator : MonoBehaviour
         Time.timeScale = 0f;
         UpdateSprite(hasDoubleJump ? currentAnimation.defaultAnimation : currentAnimation.withDoubleJumpAnimation);
 
+        if (hasDoubleJump)
+            GameObject.FindObjectOfType<DoubleJumpUnlockedDisplay>().Show();
+
         yield return new WaitForSecondsRealtime(0.2f);
 
         bool isBig = !hasDoubleJump;
