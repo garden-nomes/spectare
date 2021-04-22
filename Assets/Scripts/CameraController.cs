@@ -15,17 +15,23 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         camera = GetComponent<Camera>();
+    }
+
+    void OnEnable()
+    {
+        letterboxes = new SpriteRenderer[4];
 
         var obj = new GameObject("Letterbox");
-        var sr = obj.AddComponent<SpriteRenderer>();
-        sr.sprite = squareSprite;
-        sr.color = Color.black;
-        sr.sortingOrder = 1000;
+        obj.transform.SetParent(transform);
 
-        letterboxes = new SpriteRenderer[4];
-        for (int i = 0; i < 4; i++)
+        letterboxes[0] = obj.AddComponent<SpriteRenderer>();
+        letterboxes[0].sprite = squareSprite;
+        letterboxes[0].color = Color.black;
+        letterboxes[0].sortingOrder = 1000;
+
+        for (int i = 1; i < 4; i++)
         {
-            letterboxes[i] = Instantiate(sr, transform.position, Quaternion.identity, transform);
+            letterboxes[i] = Instantiate(letterboxes[0], transform.position, Quaternion.identity, transform);
             letterboxes[i].enabled = false;
         }
     }

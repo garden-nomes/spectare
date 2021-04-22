@@ -20,13 +20,7 @@ public class Stars : MonoBehaviour
     {
         initialPosition = transform.position;
 
-        var obj = new GameObject();
-        var star = obj.AddComponent<SpriteRenderer>();
-        star.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-        star.sortingOrder = -100;
-
         int starCount = Mathf.FloorToInt(width * height * density);
-
         stars = new SpriteRenderer[starCount];
         starParallaxes = new float[starCount];
         starPositions = new Vector3[starCount];
@@ -37,7 +31,21 @@ public class Stars : MonoBehaviour
                 Mathf.Round(Random.Range(-width / 2f, width / 2f) * 8f) / 8f,
                 Mathf.Round(Random.Range(-height / 2f, height / 2f) * 8f) / 8f,
                 0f);
-            stars[i] = Instantiate(star, transform.position + starPositions[i], Quaternion.identity, transform);
+        }
+
+        var obj = new GameObject();
+        obj.transform.SetParent(transform);
+        obj.transform.position = transform.position + starPositions[0];
+
+        stars[0] = obj.AddComponent<SpriteRenderer>();
+        stars[0].maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+        stars[0].sprite = starSprites[Random.Range(0, starSprites.Length)];
+        stars[0].sortingOrder = -100;
+        starParallaxes[0] = Random.value;
+
+        for (int i = 1; i < starCount; i++)
+        {
+            stars[i] = Instantiate(stars[0], transform.position + starPositions[i], Quaternion.identity, transform);
             stars[i].sprite = starSprites[Random.Range(0, starSprites.Length)];
             starParallaxes[i] = Random.value;
         }

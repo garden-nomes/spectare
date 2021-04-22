@@ -7,10 +7,12 @@ public class GameManager : MonoBehaviour
 {
     public string titleScene;
     public GameObject playerPrefab;
+    public GameObject scorePrefab;
     public Transform startPoint;
     public float respawnTime = 1f;
     public CameraController camera;
     public KeyDisplay keyDisplay;
+    public Counter scoreCounter;
     public string powerupTag = "Powerup";
     public int maxPowerups = 4;
 
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
     private bool isEndingSequenceStarted;
     private int powerupCount = 0;
     public int PowerupCount => powerupCount;
+    private int score = 0;
 
     void Start()
     {
@@ -90,6 +93,11 @@ public class GameManager : MonoBehaviour
 
             if (powerupCount == maxPowerups)
                 player.GetComponent<PlayerController>().hasDoubleJump = true;
+        }
+        else
+        {
+            Instantiate(scorePrefab, powerupCollider.transform.position, Quaternion.identity);
+            scoreCounter.Count += 100;
         }
 
         powerupCollider.gameObject.SetActive(false);
