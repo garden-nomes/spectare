@@ -9,6 +9,20 @@ using UnityEngine.SceneManagement;
 public class TitleScreen : MonoBehaviour
 {
     public string gameScene;
+    public Counter highScoreCounter;
+    public float highScoreBeat = 1f;
+
+    void Start()
+    {
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+        highScoreCounter.gameObject.SetActive(false);
+
+        if (highScore > 0)
+        {
+            highScoreCounter.JumpTo(highScore);
+            StartCoroutine(HighScoreBeatCoroutine());
+        }
+    }
 
     void Update()
     {
@@ -26,5 +40,11 @@ public class TitleScreen : MonoBehaviour
 
         if (isAnyKeyDown || isAnyButtonDown)
             SceneManager.LoadSceneAsync(gameScene);
+    }
+
+    IEnumerator HighScoreBeatCoroutine()
+    {
+        yield return new WaitForSeconds(highScoreBeat);
+        highScoreCounter.gameObject.SetActive(true);
     }
 }

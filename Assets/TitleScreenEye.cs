@@ -49,6 +49,7 @@ public class TitleScreenEye : MonoBehaviour
     void Reposition()
     {
         bool isValid = false;
+        int tries = 0;
 
         while (!isValid)
         {
@@ -57,13 +58,18 @@ public class TitleScreenEye : MonoBehaviour
             float y = cameraPosition.y + (Random.value - .5f) * (repositionSize.y - repositionPadding * 2f);
             transform.position = new Vector3(x, y, 0f) + repositionOffset;
 
+            tries++;
             isValid = true;
-            foreach (var other in others)
+
+            if (tries < 20)
             {
-                if (this != other &&
-                    (transform.position - other.transform.position).sqrMagnitude < minRadius * minRadius)
+                foreach (var other in others)
                 {
-                    isValid = false;
+                    if (this != other &&
+                        (transform.position - other.transform.position).sqrMagnitude < minRadius * minRadius)
+                    {
+                        isValid = false;
+                    }
                 }
             }
         }

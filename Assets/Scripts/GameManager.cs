@@ -147,6 +147,14 @@ public class GameManager : MonoBehaviour
             StartCoroutine(EndingSequenceCoroutine());
     }
 
+    void SaveHighScore()
+    {
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+
+        if (scoreCounter.Count > highScore)
+            PlayerPrefs.SetInt("HighScore", scoreCounter.Count);
+    }
+
     IEnumerator EndingSequenceCoroutine()
     {
         isEndingSequenceStarted = true;
@@ -162,6 +170,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
+        SaveHighScore();
         yield return SceneManager.LoadSceneAsync(titleScene);
     }
 }

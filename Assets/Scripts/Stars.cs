@@ -11,15 +11,12 @@ public class Stars : MonoBehaviour
     public float parallax = 0.5f;
     public float twinkleRate = 1f;
 
-    private Vector3 initialPosition;
     private SpriteRenderer[] stars;
     private float[] starParallaxes;
     private Vector3[] starPositions;
 
     void Start()
     {
-        initialPosition = transform.position;
-
         int starCount = Mathf.FloorToInt(width * height * density);
         stars = new SpriteRenderer[starCount];
         starParallaxes = new float[starCount];
@@ -53,7 +50,7 @@ public class Stars : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 toCamera = Camera.main.transform.position - initialPosition;
+        Vector3 toCamera = Camera.main.transform.position - transform.position;
 
         for (int i = 0; i < stars.Length; i++)
         {
@@ -61,7 +58,7 @@ public class Stars : MonoBehaviour
                 stars[i].sprite = starSprites[Random.Range(0, starSprites.Length)];
 
             stars[i].transform.position =
-                initialPosition +
+                transform.position +
                 starPositions[i] +
                 toCamera * parallax * starParallaxes[i];
         }
