@@ -1,22 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public string titleScene;
     public GameObject playerPrefab;
     public Transform startPoint;
     public float respawnTime = 1f;
     public CameraController camera;
     public KeyDisplay keyDisplay;
     public string powerupTag = "Powerup";
+    public int maxPowerups = 4;
 
     public float endingSequenceBeat = 3f;
     public float endingSequenceTime = 3f;
     public Vector3 endingSequencePan = new Vector3(0f, 30f, 0f);
 
     private Room[] rooms;
-    private GameObject[] powerups;
+    private GameObject[] powerupObjects;
     private Room currentRoom;
     public Room CurrentRoom => currentRoom;
     private Vector3 respawnPoint;
@@ -25,12 +28,14 @@ public class GameManager : MonoBehaviour
     private float respawnTimer = 0f;
     private int keys = 0;
     private bool isEndingSequenceStarted;
+    private int powerupCount = 0;
+    public int PowerupCount => powerupCount;
 
     void Start()
     {
         respawnPoint = startPoint.position;
         rooms = GameObject.FindObjectsOfType<Room>();
-        powerups = GameObject.FindGameObjectsWithTag(powerupTag);
+        powerupObjects = GameObject.FindGameObjectsWithTag(powerupTag);
         isEndingSequenceStarted = false;
 
         foreach (var trigger in GameObject.FindObjectsOfType<EndingSequenceTrigger>())
@@ -58,13 +63,36 @@ public class GameManager : MonoBehaviour
         player = Instantiate(playerPrefab, respawnPoint, Quaternion.identity);
 
         var playerController = player.GetComponent<PlayerController>();
+        playerController.onDamage += OnDamage;
+        playerController.onPowerupPickup += OnPowerupPickup;
         playerController.onKeyPickup += OnKeyPickup;
         playerController.onUnlock += OnUnlock;
 
-        foreach (var powerup in powerups)
+        foreach (var powerup in powerupObjects)
             powerup.gameObject.SetActive(true);
 
         camera.target = player.transform;
+
+        powerupCount = 0;
+    }
+
+    void OnDamage()
+    {
+        powerupCount = 0;
+        player.GetComponent<PlayerController>().hasDoubleJump = false;
+    }
+
+    void OnPowerupPickup(Collider2D powerupCollider)
+    {
+        if (powerupCount < maxPowerups)
+        {
+            powerupCount++;
+
+            if (powerupCount == maxPowerups)
+                player.GetComponent<PlayerController>().hasDoubleJump = true;
+        }
+
+        powerupCollider.gameObject.SetActive(false);
     }
 
     void OnKeyPickup(Collider2D keyCollider)
@@ -125,5 +153,7 @@ public class GameManager : MonoBehaviour
             camera.transform.position = initialPosition + endingSequencePan * smoothStep;
             yield return null;
         }
+
+        yield return SceneManager.LoadSceneAsync(titleScene);
     }
 }

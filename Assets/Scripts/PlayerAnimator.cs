@@ -56,7 +56,7 @@ public class PlayerAnimator : MonoBehaviour
                 SetAnimation(fallAnimation);
         }
 
-        if (playerController.Powerups < 4)
+        if (!playerController.hasDoubleJump)
         {
             if (hadDoubleJumpLastFrame)
                 StartCoroutine(GainOrLoseDoubleJumpCoroutine(false));
@@ -71,7 +71,7 @@ public class PlayerAnimator : MonoBehaviour
                 UpdateSprite(currentAnimation.withDoubleJumpAnimation);
         }
 
-        hadDoubleJumpLastFrame = playerController.Powerups >= 4;
+        hadDoubleJumpLastFrame = playerController.hasDoubleJump;
 
         timer += Time.deltaTime;
     }

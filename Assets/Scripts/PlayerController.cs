@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public System.Action onDeath;
+    public System.Action onDamage;
+    public System.Action<Collider2D> onPowerupPickup;
     public System.Action<Collider2D> onKeyPickup;
     public System.Action<Collider2D> onUnlock;
-
-    public int doubleJumps = 0;
 
     public GameObject poof;
     public GameObject sidePoof;
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public float wallJumpGraceTime = 0.1f;
     public float jumpPressedInAirTime = 0.25f;
     public Vector2 velocity;
+    public bool hasDoubleJump = false;
 
     private MovementController movementController;
     private SpriteRenderer spriteRenderer;
@@ -49,9 +50,6 @@ public class PlayerController : MonoBehaviour
     private float invulnerableTimer = 0f;
     private int doubleJumpsRemaining = 0;
     private bool isWallJumpToRight = false;
-
-    private int powerups = 0;
-    public int Powerups => powerups;
 
     void Start()
     {
@@ -139,7 +137,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(JumpCoroutine());
             velocity.x = isWallJumpToRight ? maxHorizontalSpeed : -maxHorizontalSpeed;
             wallJumpGraceTimer = 0f;
-            doubleJumpsRemaining = doubleJumps;
+            doubleJumpsRemaining = hasDoubleJump ? 1 : 0;
 
             SidePoof(isWallJumpToRight);
         }
@@ -184,7 +182,7 @@ public class PlayerController : MonoBehaviour
         {
             // reset isJumping flag and double jumps
             isJumping = false;
-            doubleJumpsRemaining = doubleJumps;
+            doubleJumpsRemaining = hasDoubleJump ? 1 : 0;
 
             if (velocity.y < -poofSpeedThreshold)
                 Poof();
@@ -222,13 +220,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag(powerupTag))
         {
-            if (powerups < 4)
-                powerups++;
-
-            if (powerups == 4)
-                doubleJumps = 1;
-
-            other.gameObject.SetActive(false);
+            onPowerupPickup?.Invoke(other);
         }
         else if (other.CompareTag(keyPickupTag))
         {
@@ -240,7 +232,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (invulnerableTimer <= 0f && (other.CompareTag(enemyTag) || other.CompareTag(spikesTag)))
         {
-            if (powerups >= 4)
+            if (hasDoubleJump)
             {
                 if (other.CompareTag(enemyTag))
                 {
@@ -253,8 +245,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 invulnerableTimer = enemyDamageInvulnerabilityTime;
-                powerups = 0;
-                doubleJumps = 0;
+                onDamage?.Invoke();
             }
             else
             {

@@ -25,6 +25,6 @@ public class TitleScreen : MonoBehaviour
         }
 
         if (isAnyKeyDown || isAnyButtonDown)
-            SceneManager.LoadScene(gameScene);
+            SceneManager.LoadSceneAsync(gameScene);
     }
 }

@@ -11,16 +11,18 @@ public class PowerupIndicator : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float visibleTimer = 0f;
     private float previousPowerupCount = 0;
+    private GameManager gameManager;
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        previousPowerupCount = playerController.Powerups;
+        previousPowerupCount = gameManager.PowerupCount;
     }
 
     void Update()
     {
-        if (previousPowerupCount != playerController.Powerups)
+        if (previousPowerupCount != gameManager.PowerupCount)
         {
             visibleTimer = visibleTime;
             spriteRenderer.enabled = true;
@@ -28,7 +30,7 @@ public class PowerupIndicator : MonoBehaviour
 
         if (visibleTimer > 0f)
         {
-            int frame = Mathf.Min(playerController.Powerups, frames.Length - 1);
+            int frame = Mathf.Min(gameManager.PowerupCount, frames.Length - 1);
             spriteRenderer.sprite = frames[frame];
 
             visibleTimer -= Time.deltaTime;
@@ -36,6 +38,6 @@ public class PowerupIndicator : MonoBehaviour
                 spriteRenderer.enabled = false;
         }
 
-        previousPowerupCount = playerController.Powerups;
+        previousPowerupCount = gameManager.PowerupCount;
     }
 }
