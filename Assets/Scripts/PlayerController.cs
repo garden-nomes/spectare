@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     public System.Action<Collider2D> onKeyPickup;
     public System.Action<Collider2D> onUnlock;
 
+    public AudioClip jumpSound;
+    public AudioClip landingSound;
+    public AudioClip deathSound;
     public GameObject poof;
     public GameObject sidePoof;
     public float poofSpeedThreshold = 6f;
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private MovementController movementController;
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
     public bool IsGrounded => movementController.IsGrounded;
     public bool IsLeftTouching => movementController.IsLeftTouching;
     public bool IsRightTouching => movementController.IsRightTouching;
@@ -57,6 +61,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         movementController.OnLand += OnLand;
         invulnerableTimer = enemyDamageInvulnerabilityTime;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -180,6 +185,8 @@ public class PlayerController : MonoBehaviour
         // landed
         if (!wasGrounded && movementController.IsGrounded)
         {
+            audioSource.PlayOneShot(landingSound);
+
             // reset isJumping flag and double jumps
             isJumping = false;
             doubleJumpsRemaining = hasDoubleJump ? 1 : 0;
@@ -249,6 +256,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                audioSource.PlayOneShot(deathSound);
                 onDeath?.Invoke();
             }
         }
@@ -261,6 +269,8 @@ public class PlayerController : MonoBehaviour
         float jumpTimer = 0f;
         isGravityEnabled = false;
         velocity.y = maxJumpHeight / maxRiseTime;
+
+        audioSource.PlayOneShot(jumpSound);
 
         while (IsJumpDown() && jumpTimer < maxRiseTime)
         {

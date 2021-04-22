@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     public string titleScene;
     public GameObject playerPrefab;
     public GameObject scorePrefab;
+    public AudioClip pickupSound;
+    public AudioClip unlockSound;
+    public AudioClip powerupSound;
+    public AudioClip damageSound;
     public Transform startPoint;
     public float respawnTime = 1f;
     public CameraController camera;
@@ -20,6 +24,7 @@ public class GameManager : MonoBehaviour
     public float endingSequenceTime = 3f;
     public Vector3 endingSequencePan = new Vector3(0f, 30f, 0f);
 
+    private AudioSource audioSource;
     private Room[] rooms;
     private GameObject[] powerupObjects;
     private Room currentRoom;
@@ -39,6 +44,7 @@ public class GameManager : MonoBehaviour
         respawnPoint = startPoint.position;
         rooms = GameObject.FindObjectsOfType<Room>();
         powerupObjects = GameObject.FindGameObjectsWithTag(powerupTag);
+        audioSource = GetComponent<AudioSource>();
         isEndingSequenceStarted = false;
 
         foreach (var trigger in GameObject.FindObjectsOfType<EndingSequenceTrigger>())
@@ -83,6 +89,7 @@ public class GameManager : MonoBehaviour
     {
         powerupCount = 0;
         player.GetComponent<PlayerController>().hasDoubleJump = false;
+        audioSource.PlayOneShot(damageSound);
     }
 
     void OnPowerupPickup(Collider2D powerupCollider)
@@ -92,12 +99,18 @@ public class GameManager : MonoBehaviour
             powerupCount++;
 
             if (powerupCount == maxPowerups)
+            {
                 player.GetComponent<PlayerController>().hasDoubleJump = true;
+                audioSource.PlayOneShot(powerupSound);
+            }
+            else
+                audioSource.PlayOneShot(pickupSound);
         }
         else
         {
             Instantiate(scorePrefab, powerupCollider.transform.position, Quaternion.identity);
             scoreCounter.Count += 100;
+            audioSource.PlayOneShot(pickupSound);
         }
 
         powerupCollider.gameObject.SetActive(false);
@@ -105,6 +118,7 @@ public class GameManager : MonoBehaviour
 
     void OnKeyPickup(Collider2D keyCollider)
     {
+        audioSource.PlayOneShot(pickupSound);
         keyDisplay.KeyCount++;
         GameObject.Destroy(keyCollider.gameObject);
     }
@@ -113,6 +127,7 @@ public class GameManager : MonoBehaviour
     {
         if (keyDisplay.KeyCount > 0)
         {
+            audioSource.PlayOneShot(unlockSound);
             lockCollider.GetComponent<Lock>().Unlock();
             keyDisplay.KeyCount--;
         }

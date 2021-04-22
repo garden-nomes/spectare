@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
+    public AudioClip openSound;
     public Transform objectToOpen;
     public float openTime = 0.25f;
     public float leavePokingOut = 0.25f;
@@ -14,6 +15,7 @@ public class Gate : MonoBehaviour
     {
         StartCoroutine(OpenCoroutine());
         Instantiate(poof, transform.position, transform.rotation);
+        GetComponent<AudioSource>().PlayOneShot(openSound);
         GetComponent<Collider2D>().enabled = false;
     }
 

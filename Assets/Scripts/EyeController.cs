@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EyeController : MonoBehaviour
 {
+    [SerializeField] private AudioClip openSound;
     [SerializeField] private float speed = 1f;
     [SerializeField] private float closeDistance = 15f;
     [SerializeField] private float minSpawnDistance = 5f;
@@ -16,6 +17,7 @@ public class EyeController : MonoBehaviour
     private GameManager gameManager;
     private bool isBonked = false;
     private Vector3 initialPosition;
+    private AudioSource audioSource;
 
     void Start()
     {
@@ -23,6 +25,7 @@ public class EyeController : MonoBehaviour
         pupilLookAt = GetComponentInChildren<PupilLookAt>();
         room = GetComponentInParent<Room>();
         gameManager = FindObjectOfType<GameManager>();
+        audioSource = GetComponent<AudioSource>();
         initialPosition = transform.position;
     }
 
@@ -54,7 +57,10 @@ public class EyeController : MonoBehaviour
             if (isBonked)
                 GameObject.Destroy(gameObject);
             else if (toTarget.sqrMagnitude < closeDistance * closeDistance)
+            {
                 eyeAnimator.Open();
+                audioSource.PlayOneShot(openSound);
+            }
         }
         else if (eyeAnimator.State == EyeAnimatorState.Open)
         {
