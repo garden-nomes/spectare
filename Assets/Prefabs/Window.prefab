@@ -203,5 +203,5 @@ MonoBehaviour:
   density: 0.5
   width: 20
   height: 10
-  parallax: 0
+  parallax: 0.1
   twinkleRate: 0.05

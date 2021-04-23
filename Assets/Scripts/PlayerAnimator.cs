@@ -102,10 +102,10 @@ public class PlayerAnimator : MonoBehaviour
         if (hasDoubleJump)
             GameObject.FindObjectOfType<DoubleJumpUnlockedDisplay>().Show();
 
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
 
         bool isBig = !hasDoubleJump;
-        for (float i = 0; i < 10; i++)
+        for (float i = 0; i < 5; i++)
         {
             yield return new WaitForSecondsRealtime(0.1f);
             UpdateSprite(isBig ? currentAnimation.withDoubleJumpAnimation : currentAnimation.defaultAnimation);
@@ -114,7 +114,7 @@ public class PlayerAnimator : MonoBehaviour
 
         UpdateSprite(hasDoubleJump ? currentAnimation.withDoubleJumpAnimation : currentAnimation.defaultAnimation);
 
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.1f);
 
         Time.timeScale = 1f;
         spriteRenderer.sortingOrder = initialSortingOrder;
