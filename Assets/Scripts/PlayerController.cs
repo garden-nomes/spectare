@@ -44,8 +44,6 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded => movementController.IsGrounded;
     public bool IsLeftTouching => movementController.IsLeftTouching;
     public bool IsRightTouching => movementController.IsRightTouching;
-    private Vector2 movementInput = Vector2.zero;
-    private bool isJumpPressed = false;
     private bool isGravityEnabled = true;
     private bool isJumping = false;
     private float coyoteTimer = 0f;
@@ -64,18 +62,12 @@ public class PlayerController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
-        // update input state (input must be handled in Update() and not FixedUpdate())
-        movementInput = ReadMovementInput();
-        isJumpPressed = IsJumpPressed() || isJumpPressed; // it's possible for multiple Update()'s to occur before a FixedUpdate()
-    }
-
     void FixedUpdate()
     {
         // check current input state
-        bool isLeftDown = movementInput.x < 0f;
-        bool isRightDown = movementInput.x > 0f;
+        bool isLeftDown = IsLeftDown();
+        bool isRightDown = IsRightDown();
+        bool isJumpPressed = IsJumpPressed();
 
         // apply horizontal velocity if left or right pressed
         float acceleratingForce = maxHorizontalSpeed / timeToMaxSpeed;
@@ -272,7 +264,7 @@ public class PlayerController : MonoBehaviour
 
         audioSource.PlayOneShot(jumpSound);
 
-        while (IsJumpDown() && jumpTimer < maxRiseTime)
+        while (IsJumpHeld() && jumpTimer < maxRiseTime)
         {
             yield return null;
             jumpTimer += Time.deltaTime;
@@ -282,37 +274,42 @@ public class PlayerController : MonoBehaviour
         isGravityEnabled = true;
     }
 
-    // read movement from WSAD/Arrow keys/Gamepad
-    Vector2 ReadMovementInput()
+    // input helpers
+
+    bool IsLeftDown()
     {
-        bool isLeftPressed = Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed;
-        bool isRightPressed = Keyboard.current.rightArrowKey.isPressed || Keyboard.current.dKey.isPressed;
-        bool isUpPressed = Keyboard.current.upArrowKey.isPressed || Keyboard.current.wKey.isPressed;
-        bool isDownPressed = Keyboard.current.downArrowKey.isPressed || Keyboard.current.sKey.isPressed;
-
-        float horizontal = (isLeftPressed ? -1f : 0f) + (isRightPressed ? 1f : 0f);
-        float vertical = (isDownPressed ? -1f : 0f) + (isUpPressed ? 1f : 0f);
-        var movement = new Vector2(horizontal, vertical);
-
-        if (Gamepad.current != null)
-        {
-            movement += Gamepad.current.leftStick.ReadValue();
-        }
-
-        return movement.normalized;
+        return Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed ||
+            (Gamepad.current != null &&
+                (Gamepad.current.leftStick.left.isPressed ||
+                    Gamepad.current.dpad.left.isPressed));
     }
 
-    // read spacebar or gamepad button press
+    bool IsRightDown()
+    {
+        return Keyboard.current.rightArrowKey.isPressed || Keyboard.current.dKey.isPressed ||
+            (Gamepad.current != null &&
+                (Gamepad.current.leftStick.right.isPressed ||
+                    Gamepad.current.dpad.right.isPressed));
+    }
+
     bool IsJumpPressed()
     {
         return Keyboard.current.spaceKey.wasPressedThisFrame ||
-            (Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame);
+            (Gamepad.current != null &&
+                (Gamepad.current.buttonSouth.wasPressedThisFrame ||
+                    Gamepad.current.buttonEast.wasPressedThisFrame ||
+                    Gamepad.current.buttonNorth.wasPressedThisFrame ||
+                    Gamepad.current.buttonWest.wasPressedThisFrame));
     }
 
-    bool IsJumpDown()
+    bool IsJumpHeld()
     {
         return Keyboard.current.spaceKey.isPressed ||
-            (Gamepad.current != null && Gamepad.current.buttonSouth.isPressed);
+            (Gamepad.current != null &&
+                (Gamepad.current.buttonSouth.isPressed ||
+                    Gamepad.current.buttonEast.isPressed ||
+                    Gamepad.current.buttonNorth.isPressed ||
+                    Gamepad.current.buttonWest.isPressed));
     }
 
     void Poof()
